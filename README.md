@@ -1,6 +1,6 @@
 # Gemini Chat Bot
 
-![Gemini Chat Bot](https://mgckarachi.vercel.app/_next/image?url=%2Fmgc.png&w=256&q=100)
+![Gemini Chat Bot](https://zex-software.vercel.app/zex-logo.png)
 
 ## About
 Gemini Chat Bot is an advanced chatbot application powered by the Gemini API, designed to assist users with conversations, queries, and task assistance. Developed using Next.js and Tailwind CSS, it offers a responsive and efficient user experience. The application is hosted on Vercel, ensuring high availability and performance.
