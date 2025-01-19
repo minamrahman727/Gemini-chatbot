@@ -26,11 +26,11 @@ Ensure you have the following installed:
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/gemini-chat-bot.git
+   git clone https://github.com/minamrahman727/Gemini-chatbot.git
    ```
 2. Navigate to the project directory:
    ```bash
-   cd gemini-chat-bot
+   cd gemini-chatbot
    ```
 3. Install dependencies:
    ```bash
