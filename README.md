@@ -1,84 +1,36 @@
-# Gemini Chat Bot
-
-![Gemini Chat Bot](https://zex-software.vercel.app/zex-logo.png)
-
-## About
-Gemini Chat Bot is an advanced chatbot application powered by the Gemini API, designed to assist users with conversations, queries, and task assistance. Developed using Next.js and Tailwind CSS, it offers a responsive and efficient user experience. The application is hosted on Vercel, ensuring high availability and performance.
-
-### Key Features
-- Powered by the Gemini API.
-- Responsive chatbot interface.
-- Intelligent conversation handling.
-- Developed with Next.js and Tailwind CSS.
-- Easy deployment on Vercel.
-
-## Live Demo
-Check out the live application here: [Gemini Chat Bot](https://chatbot-minam.vercel.app/)
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
-Follow the instructions below to set up and run the project locally.
 
-### Prerequisites
-Ensure you have the following installed:
-- [Node.js](https://nodejs.org/) (v16 or higher recommended)
-- [Git](https://git-scm.com/)
+First, run the development server:
 
-### Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/minamrahman727/Gemini-chatbot.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd gemini-chatbot
-   ```
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-### Running the Application
-Start the development server:
 ```bash
 npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
-The application will be available at `http://localhost:3000`.
 
-### Deployment
-To deploy the application on Vercel:
-1. Install the Vercel CLI:
-   ```bash
-   npm install -g vercel
-   ```
-2. Deploy the project:
-   ```bash
-   vercel
-   ```
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Contributing
-Contributions are welcome! Feel free to fork this repository, create a new branch, and submit a pull request.
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-### Steps to Contribute
-1. Fork the repository.
-2. Create a new branch:
-   ```bash
-   git checkout -b feature-name
-   ```
-3. Commit your changes:
-   ```bash
-   git commit -m "Description of changes"
-   ```
-4. Push to your branch:
-   ```bash
-   git push origin feature-name
-   ```
-5. Submit a pull request.
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## License
-This project is licensed under the [MIT License](LICENSE).
----
-## Acknowledgments
-- Developed by [Syed Minam ur Rehman](https://smrehman.vercel.app)
-- Powered by the Gemini API.
-- Built with Next.js and Tailwind CSS.
-- Hosted on [Vercel](https://vercel.com/).
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
