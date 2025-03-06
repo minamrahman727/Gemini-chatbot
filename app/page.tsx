@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import  Chat  from "./components/Chat";
 
 export default function Page() {
