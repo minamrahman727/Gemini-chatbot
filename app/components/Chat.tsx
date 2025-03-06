@@ -4,13 +4,17 @@ import { useState, useRef, useEffect } from "react";
 import { AiOutlineSend } from "react-icons/ai";
 import { motion } from "framer-motion";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import ReactMarkdown from 'react-markdown';
+import Link from "next/link";
 
 export default function Chat() {
   const [messages, setMessages] = useState<
     { text: string; sender: "user" | "bot" }[]
   >([]);
   const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
   const messageEndRef = useRef<HTMLDivElement | null>(null);
+  const [typing, setTyping] = useState<boolean>(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
@@ -18,11 +22,13 @@ export default function Chat() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (input.trim() === "") return;
+    if (input.trim() === "" || loading) return;
 
-    const newUserMessage: { text: string; sender: "user" } = { text: input, sender: "user" };
+    const newUserMessage = { text: input, sender: "user" as const };
     setMessages((prev) => [...prev, newUserMessage]);
     setInput("");
+    setLoading(true);
+    setTyping(true);
 
     try {
       const apiKey = 'AIzaSyAh55-oTWkaaiMqzwZ4hJ_DuGINRkwkLoE';
@@ -30,18 +36,23 @@ export default function Chat() {
         throw new Error("Google API key is not defined");
       }
       const genAI = new GoogleGenerativeAI(apiKey);
-      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+      const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-thinking-exp-01-21" });
 
       const result = await model.generateContent(input);
-      const response = result.response.text();
+      const response = await result.response.text();
 
-      const newBotMessage: { text: string; sender: "bot" } = { text: response, sender: "bot" };
+      const newBotMessage = { text: response, sender: "bot" as const };
       setMessages((prev) => [...prev, newBotMessage]);
     } catch (error) {
       console.error("Error:", error);
-      const newBotMessage: { text: string; sender: "bot" } = { text: "Oops! Something went wrong. Please try again later.", sender: "bot" };
+      const newBotMessage = {
+        text: "Oops! Something went wrong. Please try again later.",
+        sender: "bot" as const,
+      };
       setMessages((prev) => [...prev, newBotMessage]);
     }
+    setLoading(false);
+    setTyping(false);
   };
 
   useEffect(() => {
@@ -49,51 +60,100 @@ export default function Chat() {
   }, [messages]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-b from-gray-800 to-gray-900 text-neutral-600 rounded-lg shadow-xl">
-      <div className="flex-1 overflow-y-auto p-8 space-y-6 roounded-lg">
+    <div className="flex flex-col min-h-dvh bg-gradient-to-r from-green-500 to-gray-800 text-white rounded-3xl shadow-2xl overflow-hidden">
+      {/* Header */}
+      <header className="bg-gradient-to-r from-green-500 to-gray-800 p-8 text-center border-b border-gray-700">
+        <h1 className="text-4xl font-bold tracking-tight text-shadow-md">
+          AI Chat Assistant
+        </h1>
+        <p className="mt-2 text-xl text-gray-200">
+          Powered by Google Gemini AI
+        </p>
+        <p className="mt-1 text-sm text-gray-300 italic">
+          Model: Gemini 2.0 flash Thinking Experimental 02-05
+        </p>
+      </header>
+
+      {/* Chat Messages */}
+      <div className="flex-1 overflow-y-auto p-8 space-y-6">
         {messages.map((message, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, x: message.sender === "user" ? 50 : -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}
+            initial={{ opacity: 0, y: message.sender === "user" ? 50 : -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            className={`flex ${
+              message.sender === "user" ? "justify-end" : "justify-start"
+            }`}
           >
             <div
-              className={`px-6 py-4 rounded-lg shadow-md ${
+              className={`px-7 py-4 rounded-3xl shadow-lg max-w-2xl break-words ${
                 message.sender === "user"
-                  ? "bg-gradient-to-r from-indigo-500 to-purple-600 text-white"
-                  : "bg-gray-800 text-gray-300"
-              }`}
+                  ? "bg-gradient-to-br from-green-500 to-gray-800 text-white"
+                  : "bg-gray-700 text-gray-100"
+              } text-lg`}
             >
-              {message.text}
+              <ReactMarkdown>{message.text}</ReactMarkdown>
             </div>
           </motion.div>
         ))}
+        {typing && (
+          <div className="flex justify-start">
+            <div className="px-7 py-4 rounded-3xl shadow-lg max-w-2xl break-words bg-gray-700 text-gray-100 text-base">
+              Typing...
+            </div>
+          </div>
+        )}
         <div ref={messageEndRef} />
       </div>
 
+      {/* Input Form */}
       <form
         onSubmit={handleSubmit}
-        className="flex items-center p-6 bg-gray-900 border-t rounded-lg border-gray-800"
+        className="flex items-center p-6 bg-gradient-to-r from-green-500 to-gray-800 border-t border-gray-700"
       >
         <input
           type="text"
           placeholder="Type your message..."
           value={input}
           onChange={handleInputChange}
-          className="flex-grow px-6 py-4 border border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-lg"
+          onKeyDown={(e) => {
+        if (e.key === 'Enter') {
+          handleSubmit(e);
+        }
+          }}
+          disabled={loading}
+          className="flex-grow px-5 py-4 border border-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-green-700 bg-gray-800 text-white placeholder-gray-500 text-lg"
+          ref={(inputElement) => {
+        if (inputElement) {
+          if (!loading) {
+            inputElement.focus();
+          }
+        }
+          }}
         />
+
         <button
           type="submit"
-          className="ml-4 p-4 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:bg-indigo-700"
+          disabled={loading}
+          className="ml-4 p-4 rounded-full bg-gradient-to-r from-green-500 to-gray-800 text-white hover:from-gray-800 hover:to-green-500 disabled:opacity-50 transition-colors duration-300"
         >
-          <AiOutlineSend size={20} />
+          <AiOutlineSend size={32} className="p-1"/>
         </button>
       </form>
 
-      <footer className="p-6 bg-gray-800 text-center text-gray-400 rounded-b-lg">
-        Developed by <a href="https://smrehman.vercel.app/" className="text-indigo-500 hover:underline">Syed Minam Ur Rehman</a>
+      {/* Footer */}
+      <footer className="p-5 bg-gradient-to-r from-green-500 to-gray-800 text-center text-gray-400 border-t border-gray-700">
+        Developed by{" "}
+        <Link
+          href="https://smrehman.vercel.app/"
+          className="text-purple-300 hover:underline"
+        >
+          Syed Minam Ur Rehman
+        </Link>
+        <p className="mt-1 text-sm italic text-gray-300">
+          Innovated with precision by a passionate AI developer.
+        </p>
       </footer>
     </div>
   );
