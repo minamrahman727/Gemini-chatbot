@@ -4,9 +4,9 @@ import  Chat  from "./components/Chat";
 
 export default function Page() {
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-b from-gray-800 to-gray-900 text-neutral-200">
+    <div className="flex flex-col min-h-screen bg-gradient-to-b from-green-800 to-green-800 text-neutral-200">
       {/* Header Section */}
-      <header className="text-center py-10">
+      {/* <header className="text-center py-10">
         <h1 className="text-4xl font-bold text-indigo-400">
           Gemini Powered AI Assistant
         </h1>
@@ -16,7 +16,7 @@ export default function Page() {
         <h3 className="text-md text-gray-50 mt-2">
           Model Name: <span className="text-neutral-300 hover:text-white  hover:underline font-mono"><Link href="https://deepmind.google/technologies/gemini/pro/">Gemini 1.5 Pro</Link> </span>
         </h3>
-      </header>
+      </header> */}
 
       {/* Chat Component */}
       <div className="flex-1 overflow-y-auto p-6 space-y-6">
