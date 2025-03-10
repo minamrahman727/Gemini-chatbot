@@ -14,17 +14,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Gemini powered chat-bot by SMRehman",
-  description: "Experience the future of conversational AI with our chatbot powered by Gemini Pro, developed by Syed Minam Ur Rehman. Engage in seamless and intelligent conversations. Development is still in progress.",
+  title: "Gemini 2.0 Chatbot",
+  description: "Gemini 2.0 is a generative AI model that can assist you in your daily tasks. It is a chatbot that can help you with your queries. It is a next.js application built with React, TypeScript, Tailwind CSS, and Framer Motion. It uses Google's Generative AI model to generate responses. It is a project by Syed Minam Ur Rehman.",
   keywords: [
     "chat",
     "ai",
     "gemini",
-    "pro",
-    "syed",
-    "minam",
-    "ur",
-    "rehman",
+    "gemin 2.0",
+    "syed minam ur rehman",
+    "next.js",
+    "react",
+    "typescript",
+    "tailwindcss",
+    "framer-motion",
     "google",
     "generative",
     "assistant",
@@ -33,10 +35,11 @@ export const metadata: Metadata = {
   referrer: "no-referrer",
   viewport: "width=device-width, initial-scale=1",
   robots: "noindex, nofollow",
-  authors: [{ name: "Syed Minam Ur Rehman" }],
+  authors: [{ name: "Syed Minam Ur Rehman" }
+           ,{name: "M Ayan Israr}],
   publisher: "ZEX software solutions",
   icons: {
-    icon: "/next.svg",
+    icon: "/m.png",
     apple: "/m.png",
   }
 };
