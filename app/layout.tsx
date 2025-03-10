@@ -35,8 +35,7 @@ export const metadata: Metadata = {
   referrer: "no-referrer",
   viewport: "width=device-width, initial-scale=1",
   robots: "noindex, nofollow",
-  authors: [{ name: "Syed Minam Ur Rehman" }
-           ,{name: "M Ayan Israr}],
+  authors: [{ name: "Syed Minam Ur Rehman" }],
   publisher: "ZEX software solutions",
   icons: {
     icon: "/m.png",
