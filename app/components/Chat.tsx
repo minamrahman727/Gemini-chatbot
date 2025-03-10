@@ -83,14 +83,14 @@ export default function Chat() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
             className={`flex ${
-              message.sender === "user" ? "justify-end" : "justify-start"
+              message.sender === "user" ? "justify-end" : "justify-start bg--gradient-to-bl from-green-500 to-gray-800 text-white"
             }`}
           >
             <div
-              className={`px-7 py-4 rounded-3xl shadow-lg max-w-2xl break-words ${
+              className={`px-7 py-4 rounded-3xl shadow-lg max-w-5xl break-words ${
                 message.sender === "user"
-                  ? "bg-gradient-to-br from-green-500 to-gray-800 text-white"
-                  : "bg-gray-700 text-gray-100"
+                  ? "bg-gradient-to-br from-green-500 to-gray-800 text-white font-serif"
+                  : "bg-gradient-to-r from-green-600 to-gray-800 border-gray-900 font-sans  text-gray-100"
               } text-lg`}
             >
               <ReactMarkdown>{message.text}</ReactMarkdown>
@@ -99,7 +99,7 @@ export default function Chat() {
         ))}
         {typing && (
           <div className="flex justify-start">
-            <div className="px-7 py-4 rounded-3xl shadow-lg max-w-2xl break-words bg-gray-700 text-gray-100 text-base">
+            <div className="px-7 py-4 rounded-3xl shadow-lg max-w-2xl break-words bg-gradient-to-r from-green-500 to-gray-800 text-gray-100 text-base">
               Typing...
             </div>
           </div>
@@ -123,7 +123,7 @@ export default function Chat() {
         }
           }}
           disabled={loading}
-          className="flex-grow px-5 py-4 border border-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-green-700 bg-gray-800 text-white placeholder-gray-500 text-lg"
+          className="flex-grow px-5 py-4 border border-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-green-700 bg-gradient-to-r from-green-700 to-gray-800 text-white placeholder-gray-300 text-lg"
           ref={(inputElement) => {
         if (inputElement) {
           if (!loading) {
