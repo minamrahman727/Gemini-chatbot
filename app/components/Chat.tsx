@@ -60,9 +60,9 @@ export default function Chat() {
   return (
     <div className="flex flex-col h-screen bg-neutral-700 text-white overflow-hidden">
       {/* Header */}
-      <header className="bg-neutral-800 p-8 text-center border-b border-neutral-600 shadow-lg">
+      <header className="bg-neutral-800  p-8 text-center border-b border-neutral-600 shadow-lg">
         <motion.h1
-          className="text-4xl font-extrabold tracking-tight text-white drop-shadow-md"
+          className="text-3xl font-extrabold tracking-tight text-white drop-shadow-md"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
@@ -70,7 +70,7 @@ export default function Chat() {
           AI Chat Assistant
         </motion.h1>
         <motion.p
-          className="mt-2 text-xl text-gray-300"
+          className="mt-2 text-base text-gray-300"
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
@@ -78,7 +78,7 @@ export default function Chat() {
           Powered by Google Gemini AI
         </motion.p>
         <motion.p
-          className="mt-1 text-sm text-gray-400 italic"
+          className="mt-1 text-xs text-gray-400 italic"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.6, ease: "easeOut" }}
@@ -88,7 +88,7 @@ export default function Chat() {
       </header>
 
       {/* Chat Messages */}
-      <div className="flex-1 overflow-y-auto p-8 space-y-6">
+      <div className="flex-1  overflow-y-auto p-10 space-y-6">
         {messages.map((message, index) => (
           <motion.div
             key={index}
@@ -214,9 +214,7 @@ export default function Chat() {
           >
             Syed Minam Ur Rehman
           </Link>
-          <p className="mt-1 text-sm italic text-gray-300">
-            Innovated with precision by a passionate AI developer.
-          </p>
+         
           <motion.p
             className="mt-2 text-xs text-gray-500"
             initial={{ opacity: 0 }}
